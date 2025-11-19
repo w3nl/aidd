@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "checkJs": true,
+        "target": "ESNext",
+        "module": "NodeNext",
+        "moduleResolution": "nodenext",
+        "lib": [
+            "ESNext"
+        ],
+        "rootDirs": [
+            "src"
+        ],
+        "baseUrl": ".",
+        "resolveJsonModule": true,
+        "types": [
+            "node"
+        ],
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "noEmit": true
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/node_modules/*"
+    ]
+}

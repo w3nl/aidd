@@ -1,0 +1,31 @@
+{
+  "Sudolang pseudocode prompt": {
+    "prefix": "sudolangPrompt",
+    "body": [
+      "---",
+      "description: \"${1:Short description of the module}\"",
+      "name: \"${2:PromptName}\"",
+      "agent: \"agent\"",
+      "model: ${3|GPT-4o, GPT-4, GPT-3.5|}",
+      "---",
+      "",
+      "# Intent",
+      "${4:Explain intent here}",
+      "",
+      "# Constraints",
+      "- language: JavaScript (ES modules)",
+      "- style: functional, pure",
+      "",
+      "# Pseudocode",
+      "",
+      "${5:Pseudocode here}",
+      "",
+      "# Output",
+      "- Target file: ${6:src/module.js}",
+      "- Use JSDoc for types",
+      "- Export functions",
+      ""
+    ],
+    "description": "Template for a sudolang-style pseudocode prompt file"
+  }
+}
