@@ -8,6 +8,11 @@
         "oderwat.indent-rainbow",
         "streetsidesoftware.code-spell-checker",
         "dbaeumer.vscode-eslint",
-        "DavidAnson.vscode-markdownlint"
+        "DavidAnson.vscode-markdownlint",
+        "editorconfig.editorconfig",
+        "christian-kohler.npm-intellisense",
+        "christian-kohler.path-intellisense",
+        "mikestead.dotenv",
+        "redhat.vscode-yaml"
     ]
 }
