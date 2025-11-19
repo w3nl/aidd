@@ -1,0 +1,23 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "files.associations": {
+            "*.prompt.md": "markdown"
+        },
+        "markdown.preview.breaks": true,
+        "editor.wordWrap": "on",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+        "editor.rulers": [
+            80,
+            100
+        ],
+        "editor.stickyScroll.enabled": true,
+        // Prompty: treat ./prompts as workspace prompts
+        "prompty.experimental.workspacePrompts": "prompts"
+    }
+}

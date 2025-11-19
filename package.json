@@ -1,0 +1,53 @@
+{
+    "name": "aidd",
+    "version": "1.0.0",
+    "description": "Tiny AI-driven development demo with sudolang-ish pseudocode, pure functions, and TDD.",
+    "type": "module",
+    "scripts": {
+        "fix:js": "eslint . --fix",
+        "fix": "npm run fix:js",
+        "gen:all": "npm run gen:counter && npm run gen:types",
+        "gen:counter": "npm run gen:module counter && npm run gen:tests counter",
+        "gen:module": "node tools/generate-from-prompts.js module",
+        "gen:tests": "node tools/generate-from-prompts.js tests",
+        "gen:types": "rm -rf ./types && tsc --skipLibCheck --declaration --allowJs --emitDeclarationOnly --outDir ./types ./src/counter.js",
+        "lint": "npm run lint:js && npm run lint:types && npm run lint:md",
+        "lint:js": "eslint .",
+        "lint:md": "markdownlint \"**/*.md\" --ignore node_modules",
+        "lint:types": "tsc --noEmit --project tsconfig.json --skipLibCheck",
+        "test": "node --test",
+        "vulnerabilities": "npm audit --omit=dev"
+    },
+    "keywords": [
+        "aidd",
+        "sudolang",
+        "functional",
+        "tdd",
+        "pure-functions"
+    ],
+    "author": {
+        "name": "Pieter Wigboldus",
+        "url": "https://trojs.org/"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "@types/node": "^24.10.1",
+        "dotenv": "^17.2.3",
+        "eslint": "^9.39.1",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-import": "^2.32.0",
+        "eslint-plugin-jsdoc": "^61.3.0",
+        "markdownlint": "^0.39.0",
+        "markdownlint-cli": "^0.46.0",
+        "openai": "^6.9.1",
+        "typescript": "^5.9.3"
+    },
+    "main": "./src/counter.js",
+    "engines": {
+        "node": ">= 24"
+    },
+    "funding": {
+        "type": "github",
+        "url": "https://github.com/sponsors/w3nl"
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "yzhang.markdown-all-in-one",
+        "ms-toolsai.prompty",
+        "github.copilot-chat",
+        "github.copilot",
+        "slevesque.vscode-multicolumn-markdown",
+        "oderwat.indent-rainbow",
+        "streetsidesoftware.code-spell-checker",
+        "dbaeumer.vscode-eslint",
+        "DavidAnson.vscode-markdownlint"
+    ]
+}
