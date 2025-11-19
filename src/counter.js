@@ -8,7 +8,7 @@ export class Counter {
 }
 
 /**
- * Create a new Counter instance.
+ * Creates a new Counter instance.
  * @param {number} [initialValue] - The initial value of the counter.
  * @returns {Counter} The created Counter instance.
  */
@@ -17,7 +17,7 @@ export function createCounter(initialValue = 0) {
 }
 
 /**
- * Increment the counter by a specified amount.
+ * Increments the counter by a specified amount.
  * @param {Counter} counter - The counter to increment.
  * @param {number} [amount] - The amount to increment by.
  * @returns {Counter} A new Counter instance with the incremented value.
@@ -30,7 +30,7 @@ export function increment(counter, amount = 1) {
 }
 
 /**
- * Decrement the counter by a specified amount.
+ * Decrements the counter by a specified amount.
  * @param {Counter} counter - The counter to decrement.
  * @param {number} [amount] - The amount to decrement by.
  * @returns {Counter} A new Counter instance with the decremented value.
@@ -43,7 +43,7 @@ export function decrement(counter, amount = 1) {
 }
 
 /**
- * Reset the counter to zero.
+ * Resets the counter to zero.
  * @param {Counter} counter - The counter to reset.
  * @returns {Counter} A new Counter instance with the value reset to zero.
  */
@@ -53,7 +53,7 @@ export function reset(counter) {
 }
 
 /**
- * Get the current value of the counter.
+ * Gets the current value of the counter.
  * @param {Counter} counter - The counter to get the value from.
  * @returns {number} The current value of the counter.
  */
@@ -63,7 +63,7 @@ export function getValue(counter) {
 }
 
 /**
- * Validate that the counter is a valid Counter instance.
+ * Validates that the counter is a valid Counter instance.
  * @param {Counter} counter - The counter to validate.
  * @throws {TypeError} If the counter is not valid.
  */
@@ -74,7 +74,7 @@ function validateCounter(counter) {
 }
 
 /**
- * Validate that the amount is a finite number.
+ * Validates that the amount is a finite number.
  * @param {number} amount - The amount to validate.
  * @throws {TypeError} If the amount is not valid.
  */
