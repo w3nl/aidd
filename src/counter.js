@@ -28,7 +28,7 @@ export const increment = (counter, amount = 1) => {
         throw new TypeError('Counter value must be a finite number.');
     }
     if (typeof amount !== 'number' || !isFinite(amount)) {
-        throw new TypeError('Increment amount must be a finite number.');
+        throw new TypeError('Amount must be a finite number.');
     }
     const nextValue = counter.value + amount;
     return { value: nextValue };
@@ -46,7 +46,7 @@ export const decrement = (counter, amount = 1) => {
         throw new TypeError('Counter value must be a finite number.');
     }
     if (typeof amount !== 'number' || !isFinite(amount)) {
-        throw new TypeError('Decrement amount must be a finite number.');
+        throw new TypeError('Amount must be a finite number.');
     }
     const nextValue = counter.value - amount;
     return { value: nextValue };
