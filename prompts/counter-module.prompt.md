@@ -10,8 +10,8 @@ constraints:
 - style: functional & pure
 - do not mutate input objects
 - no frameworks
-  - no side effects
-  - use JSDoc
+- no side effects
+- use JSDoc
 - use JSDoc for types where helpful
 
 environment:
