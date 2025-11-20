@@ -10,8 +10,8 @@ constraints:
 - style: functional & pure
 - do not mutate input objects
 - no frameworks
-- no database
-- no side effects (no logging, no timers, no IO)
+  - no side effects
+  - use JSDoc
 - use JSDoc for types where helpful
 
 environment:
@@ -56,7 +56,8 @@ functions:
 output:
 
 - Target file: src/counter.js
-- ES module syntax (export functions)
+  - ES module syntax
 - No external dependencies
 - JSDoc typedef for Counter and each function
 - Every validation error should throw a TypeError with a clear message
+  - No banner/path comment at top

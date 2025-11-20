@@ -10,10 +10,11 @@ constraints:
 - keep tests focused and readable
 - prefer small test cases over large scenarios
 - do NOT nest `test()` inside another `test()`; generate flat, top-level tests
-- group logically by prefixing names, e.g. "createCounter: should ..."
+- group logically by prefixing names, e.g. "createCounter: ..."
 - STRICT: Use the functional API. Do NOT call instance methods on the counter.
 - ESLint: avoid unused variables; if something would be unused, either add an assertion that uses it or prefix with `_`.
 - Immutability tests MUST assert both values: `getValue(prev)` unchanged AND `getValue(next)` updated.
+- RITEWay: one assertion per test; name as "given `<state>`, when `<action>`, should `<result>`"
 
 environment:
 
@@ -65,10 +66,11 @@ output:
 - Import `test` from 'node:test' and `strict as assert` from 'node:assert'
 - Import `{ createCounter, increment, decrement, reset, getValue }` from '../src/counter.js'
 - Generate ONLY flat, top-level tests named like:
-  - "createCounter: should create a counter with default value 0"
-  - "increment: should increment by default amount 1 and return a new counter"
+  - "createCounter: given default, when created, should be 0"
+  - "increment: given 3, when incremented by 2, should be 5"
 - In all tests:
   - NEVER call methods on the counter (no `.increment()`, `.getValue()`, etc.)
   - Use `const next = increment(prev, amount)` (or `decrement`, `reset`)
   - Assert immutability by checking both `prev` and `next` with `getValue(...)`
+  - Keep exactly one assertion per test; split when necessary
   - Do not leave variables unused; if unavoidable, prefix with `_`

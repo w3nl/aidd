@@ -12,24 +12,28 @@ Follow these rules:
 
 - Interpret pseudocode as **intent**, not as literal syntax.
 - Generate **clean, idiomatic JavaScript** for Node.js with ES modules.
-- Use **JSDoc** for type information where it helps readability.
-- Prefer **pure functions** and **functional style**:
-  - No hidden shared state
-  - No mutation of input parameters
+- Start files directly with JSDoc typedefs or imports (no leading lines like `/ src/file.js`).
+- Use **JSDoc** for types where it helps readability.
+- Prefer **pure functions** (no mutation of inputs, no hidden state).
+- Keep code **framework-agnostic** (no external deps unless requested).
   - Return new values instead of changing objects in place
 - Keep code **framework-agnostic**:
   - No web frameworks
   - No database drivers
   - No external dependencies unless explicitly requested
 - When tests are requested:
-  - Use Node's built-in `node:test` and `assert` modules.
-  - Do NOT call `test()` inside another `test()`. Prefer flat, top-level tests.
-  - If grouping is desired, prefix test names like `"createCounter: should ..."`.
-  - Alternatively, subtests must use `t.test()` and be `await`ed, but prefer flat tests.
-  - Respect the API described in the prompt; do not invent classes or instance methods if the API is functional.
-  - Prefer immutable style in tests: assert that inputs are unchanged when functions return new values.
-  - ESLint: avoid unused variables. If a variable would be intentionally unused, prefix it with `_` (e.g. `_next`).
-- Output **only code** unless explicitly asked for explanations.
+  - Use Node's built-in `node:test` and `assert`.
+  - Flat tests only (no nesting of `test()`).
+  - Prefix names for grouping: `createCounter: given ..., when ..., should ...`.
+  - Respect the functional API; do not invent instance methods.
+  - Immutable assertions: original input value unchanged.
+  - ESLint: avoid unused vars; prefix intentional unused with `_`.
+  - RITEWay style: one assertion per test; name as `given <state>, when <action>, should <result>`.
+  - RITEWay style:
+    - One assertion per test. If you need more, split into multiple tests.
+    - Name tests as: `given <state>, when <action>, should <result>`.
+    - Keep arrange/act/assert very clear and minimal.
+- Output only code unless explicitly asked for explanations.
 
 You will be given:
 

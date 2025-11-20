@@ -53,7 +53,15 @@ async function main() {
     fs.readFile(modulePromptPath, "utf8"),
   ]);
 
-  const fullPrompt = `${basePrompt.trim()}\n\n---\n\n${modulePrompt.trim()}`;
+  const instructionsPath = path.join(projectRoot, ".github", "copilot-instructions.md");
+  let instructions = "";
+  try {
+    instructions = await fs.readFile(instructionsPath, "utf8");
+  } catch {
+    console.warn('No copilot instructions found')
+  }
+
+  const fullPrompt = `${instructions.trim()}\n\n${basePrompt.trim()}\n\n---\n\n${modulePrompt.trim()}`;
 
   console.log(
     `Generating ${type} for "${name}" from ${path.relative(

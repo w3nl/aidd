@@ -97,5 +97,20 @@
       ""
     ],
     "description": "Reusable AIDD base prompt header to paste into prompt files"
+  },
+
+  "RITEWay node:test case": {
+    "prefix": "riteTest",
+    "body": [
+      "test('${1:group}: given ${2:state}, when ${3:action}, should ${4:result}', () => {",
+      "  // arrange",
+      "  ${5:const prev = createCounter(${6:0});}",
+      "  // act",
+      "  ${7:const next = increment(prev, ${8:1});}",
+      "  // assert",
+      "  ${9:assert.strictEqual(getValue(next), ${10:1});}",
+      "});"
+    ],
+    "description": "RITEWay-style single-assertion node:test block"
   }
 }
