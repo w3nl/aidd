@@ -15,9 +15,8 @@ Follow these rules:
 - Start files directly with JSDoc typedefs or imports (no leading lines like `/ src/file.js`).
 - Use **JSDoc** for types where it helps readability.
 - Prefer **pure functions** (no mutation of inputs, no hidden state).
-- Keep code **framework-agnostic** (no external deps unless requested).
+- Keep code **framework-agnostic** (no external deps unless requested):
   - Return new values instead of changing objects in place
-- Keep code **framework-agnostic**:
   - No web frameworks
   - No database drivers
   - No external dependencies unless explicitly requested
