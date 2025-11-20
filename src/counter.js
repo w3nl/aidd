@@ -4,13 +4,13 @@
  */
 
 /**
- * Creates a new Counter with the specified initial value.
+ * Creates a new counter with the specified initial value.
  * @param {number} [initialValue] - The initial value of the counter.
  * @returns {Counter} - A new Counter object.
  * @throws {TypeError} - If initialValue is not a finite number.
  */
 export const createCounter = (initialValue = 0) => {
-    if (!Number.isFinite(initialValue)) {
+    if (typeof initialValue !== 'number' || !isFinite(initialValue)) {
         throw new TypeError('Initial value must be a finite number.');
     }
     return { value: initialValue };
@@ -24,10 +24,10 @@ export const createCounter = (initialValue = 0) => {
  * @throws {TypeError} - If counter.value or amount is not a finite number.
  */
 export const increment = (counter, amount = 1) => {
-    if (!Number.isFinite(counter.value)) {
+    if (typeof counter.value !== 'number' || !isFinite(counter.value)) {
         throw new TypeError('Counter value must be a finite number.');
     }
-    if (!Number.isFinite(amount)) {
+    if (typeof amount !== 'number' || !isFinite(amount)) {
         throw new TypeError('Increment amount must be a finite number.');
     }
     const nextValue = counter.value + amount;
@@ -42,10 +42,10 @@ export const increment = (counter, amount = 1) => {
  * @throws {TypeError} - If counter.value or amount is not a finite number.
  */
 export const decrement = (counter, amount = 1) => {
-    if (!Number.isFinite(counter.value)) {
+    if (typeof counter.value !== 'number' || !isFinite(counter.value)) {
         throw new TypeError('Counter value must be a finite number.');
     }
-    if (!Number.isFinite(amount)) {
+    if (typeof amount !== 'number' || !isFinite(amount)) {
         throw new TypeError('Decrement amount must be a finite number.');
     }
     const nextValue = counter.value - amount;
@@ -59,7 +59,7 @@ export const decrement = (counter, amount = 1) => {
  * @throws {TypeError} - If counter.value is not a finite number.
  */
 export const reset = (counter) => {
-    if (!Number.isFinite(counter.value)) {
+    if (typeof counter.value !== 'number' || !isFinite(counter.value)) {
         throw new TypeError('Counter value must be a finite number.');
     }
     return { value: 0 };
@@ -72,7 +72,7 @@ export const reset = (counter) => {
  * @throws {TypeError} - If counter.value is not a finite number.
  */
 export const getValue = (counter) => {
-    if (!Number.isFinite(counter.value)) {
+    if (typeof counter.value !== 'number' || !isFinite(counter.value)) {
         throw new TypeError('Counter value must be a finite number.');
     }
     return counter.value;

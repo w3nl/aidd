@@ -18,7 +18,7 @@ test('createCounter: given non-finite initial value, when created, should throw 
     assert.throws(() => createCounter(Infinity), TypeError);
 });
 
-test('increment: given 3, when incremented by default amount, should be 4', () => {
+test('increment: given 3, when incremented by 1, should be 4', () => {
     const prev = createCounter(3);
     const next = increment(prev);
     assert.equal(getValue(next), 4);
@@ -43,7 +43,7 @@ test('increment: given non-finite amount, when incremented, should throw TypeErr
     assert.throws(() => increment(counter, Infinity), TypeError);
 });
 
-test('decrement: given 3, when decremented by default amount, should be 2', () => {
+test('decrement: given 3, when decremented by 1, should be 2', () => {
     const prev = createCounter(3);
     const next = decrement(prev);
     assert.equal(getValue(next), 2);
@@ -81,7 +81,7 @@ test('reset: given 3, when reset, should not mutate original counter', () => {
     assert.equal(getValue(next), 0);
 });
 
-test('getValue: given counter, should return current value', () => {
-    const counter = createCounter(7);
-    assert.equal(getValue(counter), 7);
+test('getValue: given counter with value 3, should return 3', () => {
+    const counter = createCounter(3);
+    assert.equal(getValue(counter), 3);
 });
