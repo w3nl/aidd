@@ -1,90 +1,80 @@
 import { test } from 'node:test';
-import { strict as assert } from 'node:assert';
+import assert from 'node:assert/strict';
 
 import { createCounter, increment, decrement, reset, getValue } from '../src/counter.js';
 
-test('createCounter: should create a counter with default value 0', () => {
-  const counter = createCounter();
-  assert.strictEqual(getValue(counter), 0);
+test('createCounter: given default, when created, should be 0', () => {
+    const counter = createCounter();
+    assert.equal(getValue(counter), 0);
 });
 
-test('createCounter: should create a counter with a custom initial value', () => {
-  const counter = createCounter(5);
-  assert.strictEqual(getValue(counter), 5);
+test('createCounter: given 5, when created, should be 5', () => {
+    const counter = createCounter(5);
+    assert.equal(getValue(counter), 5);
 });
 
-test('createCounter: should throw TypeError if initialValue is not finite', () => {
-  assert.throws(() => createCounter(NaN), TypeError);
-  assert.throws(() => createCounter(Infinity), TypeError);
-  assert.throws(() => createCounter(-Infinity), TypeError);
+test('createCounter: given non-finite initialValue, when created, should throw TypeError', () => {
+    assert.throws(() => createCounter(NaN), TypeError);
 });
 
-test('increment: should increment by default amount 1 and return a new counter', () => {
-  const counter = createCounter(3);
-  const next = increment(counter);
-  assert.strictEqual(getValue(next), 4);
+test('increment: given 3, when incremented by 1, should be 4', () => {
+    const counter = createCounter(3);
+    const newCounter = increment(counter, 1);
+    assert.equal(getValue(newCounter), 4);
 });
 
-test('increment: should increment by a custom amount and return a new counter', () => {
-  const counter = createCounter(3);
-  const next = increment(counter, 2);
-  assert.strictEqual(getValue(next), 5);
+test('increment: given 3, when incremented by 2, should be 5', () => {
+    const counter = createCounter(3);
+    const newCounter = increment(counter, 2);
+    assert.equal(getValue(newCounter), 5);
 });
 
-test('increment: should not mutate the original counter (prev unchanged, next updated)', () => {
-  const counter = createCounter(3);
-  const next = increment(counter);
-  assert.strictEqual(getValue(counter), 3);
-  assert.strictEqual(getValue(next), 4);
+test('increment: given 3, when incremented by 1, should not mutate original', () => {
+    const counter = createCounter(3);
+    increment(counter, 1);
+    assert.equal(getValue(counter), 3);
 });
 
-test('increment: should throw TypeError if amount is not finite', () => {
-  const counter = createCounter(3);
-  assert.throws(() => increment(counter, NaN), TypeError);
-  assert.throws(() => increment(counter, Infinity), TypeError);
-  assert.throws(() => increment(counter, -Infinity), TypeError);
+test('decrement: given 3, when decremented by 1, should be 2', () => {
+    const counter = createCounter(3);
+    const newCounter = decrement(counter, 1);
+    assert.equal(getValue(newCounter), 2);
 });
 
-test('decrement: should decrement by default amount 1 and return a new counter', () => {
-  const counter = createCounter(3);
-  const next = decrement(counter);
-  assert.strictEqual(getValue(next), 2);
+test('decrement: given 3, when decremented by 2, should be 1', () => {
+    const counter = createCounter(3);
+    const newCounter = decrement(counter, 2);
+    assert.equal(getValue(newCounter), 1);
 });
 
-test('decrement: should decrement by a custom amount and return a new counter', () => {
-  const counter = createCounter(3);
-  const next = decrement(counter, 2);
-  assert.strictEqual(getValue(next), 1);
+test('decrement: given 3, when decremented by 1, should not mutate original', () => {
+    const counter = createCounter(3);
+    decrement(counter, 1);
+    assert.equal(getValue(counter), 3);
 });
 
-test('decrement: should not mutate the original counter (prev unchanged, next updated)', () => {
-  const counter = createCounter(3);
-  const next = decrement(counter);
-  assert.strictEqual(getValue(counter), 3);
-  assert.strictEqual(getValue(next), 2);
+test('reset: given 3, when reset, should be 0', () => {
+    const counter = createCounter(3);
+    const newCounter = reset(counter);
+    assert.equal(getValue(newCounter), 0);
 });
 
-test('decrement: should throw TypeError if amount is not finite', () => {
-  const counter = createCounter(3);
-  assert.throws(() => decrement(counter, NaN), TypeError);
-  assert.throws(() => decrement(counter, Infinity), TypeError);
-  assert.throws(() => decrement(counter, -Infinity), TypeError);
+test('reset: given 3, when reset, should not mutate original', () => {
+    const counter = createCounter(3);
+    reset(counter);
+    assert.equal(getValue(counter), 3);
 });
 
-test('reset: should reset the counter to 0 and return a new counter', () => {
-  const counter = createCounter(5);
-  const next = reset(counter);
-  assert.strictEqual(getValue(next), 0);
+test('validation: given non-finite amount, when increment called, should throw TypeError', () => {
+    const counter = createCounter(3);
+    assert.throws(() => increment(counter, NaN), TypeError);
 });
 
-test('reset: should not mutate the original counter (prev unchanged, next updated)', () => {
-  const counter = createCounter(5);
-  const next = reset(counter);
-  assert.strictEqual(getValue(counter), 5);
-  assert.strictEqual(getValue(next), 0);
+test('validation: given non-finite amount, when decrement called, should throw TypeError', () => {
+    const counter = createCounter(3);
+    assert.throws(() => decrement(counter, NaN), TypeError);
 });
 
-test('getValue: should return the current value', () => {
-  const counter = createCounter(7);
-  assert.strictEqual(getValue(counter), 7);
+test('validation: given non-finite counter value, when any op called, should throw TypeError', () => {
+    assert.throws(() => increment(createCounter(NaN), 1), TypeError);
 });

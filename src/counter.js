@@ -1,85 +1,79 @@
-export class Counter {
-  constructor(value) {
-    if (!Number.isFinite(value)) {
-      throw new TypeError('Initial value must be a finite number');
-    }
-    this.value = value;
-  }
-}
+/**
+ * @typedef {object} Counter
+ * @property {number} value - The current value of the counter.
+ */
 
 /**
- * Creates a new Counter instance.
+ * Creates a new counter with the specified initial value.
  * @param {number} [initialValue] - The initial value of the counter.
- * @returns {Counter} The created Counter instance.
+ * @returns {Counter} - A new Counter object.
+ * @throws {TypeError} - If initialValue is not a finite number.
  */
-export function createCounter(initialValue = 0) {
-  return new Counter(initialValue);
-}
+export const createCounter = (initialValue = 0) => {
+    if (typeof initialValue !== 'number' || !isFinite(initialValue)) {
+        throw new TypeError('Initial value must be a finite number.');
+    }
+    return { value: initialValue };
+};
 
 /**
  * Increments the counter by a specified amount.
  * @param {Counter} counter - The counter to increment.
- * @param {number} [amount] - The amount to increment by.
- * @returns {Counter} A new Counter instance with the incremented value.
+ * @param {number} [amount] - The amount to increment the counter by.
+ * @returns {Counter} - A new Counter object with the incremented value.
+ * @throws {TypeError} - If counter.value or amount is not a finite number.
  */
-export function increment(counter, amount = 1) {
-  validateCounter(counter);
-  validateAmount(amount);
-  const nextValue = counter.value + amount;
-  return new Counter(nextValue);
-}
+export const increment = (counter, amount = 1) => {
+    if (typeof counter.value !== 'number' || !isFinite(counter.value)) {
+        throw new TypeError('Counter value must be a finite number.');
+    }
+    if (typeof amount !== 'number' || !isFinite(amount)) {
+        throw new TypeError('Amount must be a finite number.');
+    }
+    const nextValue = counter.value + amount;
+    return { value: nextValue };
+};
 
 /**
  * Decrements the counter by a specified amount.
  * @param {Counter} counter - The counter to decrement.
- * @param {number} [amount] - The amount to decrement by.
- * @returns {Counter} A new Counter instance with the decremented value.
+ * @param {number} [amount] - The amount to decrement the counter by.
+ * @returns {Counter} - A new Counter object with the decremented value.
+ * @throws {TypeError} - If counter.value or amount is not a finite number.
  */
-export function decrement(counter, amount = 1) {
-  validateCounter(counter);
-  validateAmount(amount);
-  const nextValue = counter.value - amount;
-  return new Counter(nextValue);
-}
+export const decrement = (counter, amount = 1) => {
+    if (typeof counter.value !== 'number' || !isFinite(counter.value)) {
+        throw new TypeError('Counter value must be a finite number.');
+    }
+    if (typeof amount !== 'number' || !isFinite(amount)) {
+        throw new TypeError('Amount must be a finite number.');
+    }
+    const nextValue = counter.value - amount;
+    return { value: nextValue };
+};
 
 /**
  * Resets the counter to zero.
  * @param {Counter} counter - The counter to reset.
- * @returns {Counter} A new Counter instance with the value reset to zero.
+ * @returns {Counter} - A new Counter object with the value reset to zero.
+ * @throws {TypeError} - If counter.value is not a finite number.
  */
-export function reset(counter) {
-  validateCounter(counter);
-  return new Counter(0);
-}
+export const reset = (counter) => {
+    if (typeof counter.value !== 'number' || !isFinite(counter.value)) {
+        throw new TypeError('Counter value must be a finite number.');
+    }
+    return { value: 0 };
+};
 
 /**
  * Gets the current value of the counter.
  * @param {Counter} counter - The counter to get the value from.
- * @returns {number} The current value of the counter.
+ * @returns {number} - The current value of the counter.
+ * @throws {TypeError} - If counter.value is not a finite number.
  */
-export function getValue(counter) {
-  validateCounter(counter);
-  return counter.value;
-}
-
-/**
- * Validates that the counter is a valid Counter instance.
- * @param {Counter} counter - The counter to validate.
- * @throws {TypeError} If the counter is not valid.
- */
-function validateCounter(counter) {
-  if (!(counter instanceof Counter) || !Number.isFinite(counter.value)) {
-    throw new TypeError('Invalid counter');
-  }
-}
-
-/**
- * Validates that the amount is a finite number.
- * @param {number} amount - The amount to validate.
- * @throws {TypeError} If the amount is not valid.
- */
-function validateAmount(amount) {
-  if (!Number.isFinite(amount)) {
-    throw new TypeError('Amount must be a finite number');
-  }
-}
+export const getValue = (counter) => {
+    if (typeof counter.value !== 'number' || !isFinite(counter.value)) {
+        throw new TypeError('Counter value must be a finite number.');
+    }
+    return counter.value;
+};

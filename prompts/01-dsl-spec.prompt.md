@@ -62,8 +62,15 @@ output:
 
 - The DSL may use `describe` groups for readability.
 - Generated code MUST NOT nest `test()` inside another `test()`.
-- Emit flat, top-level tests and prefix names with the group:
-  - Example: `test('createCounter: should create a counter with default value 0', ...)`.
+- Emit flat, top-level tests and prefix names with the group.
 - If subtests are ever used, they must be `await t.test(...)`, but prefer flat tests.
 - Do not invent instance methods; import and call the functions exactly as specified by the API.
 - ESLint: no-unused-vars. Either assert with the variable or name it with a leading `_`.
+
+### RITEWay Test Style
+
+- Single assertion per test.
+- Name each test: `given <state>, when <action>, should <result>`.
+- Example:
+  - `test('createCounter: given 0, when incremented by 1, should be 1', ...)`
+- Keep tests tiny, focused, and deterministic.

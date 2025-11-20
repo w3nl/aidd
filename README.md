@@ -85,6 +85,12 @@ npm test
 
 Or run an individual test file in VS Code launch config “Test current file”.
 
+## Test Style (RITEWay)
+
+- Single assertion per test.
+- Name tests like: `group: given <state>, when <action>, should <result>`.
+- Keep Arrange → Act → Assert explicit and minimal.
+
 ## Counter Module API
 
 ```js

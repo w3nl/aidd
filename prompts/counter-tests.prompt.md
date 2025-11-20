@@ -1,24 +1,26 @@
 project: AIDD Demo – Counter tests
 
 intent:
-  Implement tests for the counter module using Node's built-in test runner.
+  Define counter behavior via RITEWay-style unit tests (design usage first).
 
 constraints:
 
+- DO NOT define createCounter, increment, decrement, reset, getValue in this file; ONLY import them.
+- The test file must contain no export statements for production code.
 - language: JavaScript ES modules
 - test framework: node:test + assert
-- keep tests focused and readable
-- prefer small test cases over large scenarios
-- do NOT nest `test()` inside another `test()`; generate flat, top-level tests
-- group logically by prefixing names, e.g. "createCounter: should ..."
-- STRICT: Use the functional API. Do NOT call instance methods on the counter.
-- ESLint: avoid unused variables; if something would be unused, either add an assertion that uses it or prefix with `_`.
-- Immutability tests MUST assert both values: `getValue(prev)` unchanged AND `getValue(next)` updated.
+- one assertion per test (RITEWay)
+- flat tests; no nested test()
+- deterministic, pure usage
+- functional API only (no instance methods)
+- assert immutability (prev unchanged, next updated)
+- unused variable rule: prefix with _ if unavoidable
+- naming: `<group>`: given `<state>`, when `<action>`, should `<result>`
+- each test encodes one falsifiable requirement
 
 environment:
 
 - Node.js 24+
-- The module under test is src/counter.js
 
 api:
   functions:
@@ -28,47 +30,42 @@ api:
     - reset(counter) -> Counter
     - getValue(counter) -> number
   notes:
-    - Counter is treated as immutable. Each operation returns a NEW counter.
-    - Tests MUST call the exported functions; do not assume methods on Counter.
+    - pure, immutable; return new Counter objects
+    - validate inputs (finite numbers)
 
 tests:
 
-<!-- The "describe" groups are organizational only. Output each bullet as its own top-level test with a prefixed name. -->
-
   describe "createCounter":
-    - should create a counter with default value 0
-    - should create a counter with a custom initial value
-    - should throw TypeError if initialValue is not finite
+    - given default, when created, should be 0
+    - given 5, when created, should be 5
+    - given non-finite initialValue, when created, should throw TypeError
 
   describe "increment":
-    - should increment by default amount 1 and return a new counter
-    - should increment by a custom amount and return a new counter
-    - should not mutate the original counter (prev unchanged, next updated)
-    - should throw TypeError if amount is not finite
+    - given 3, when incremented by 1, should be 4
+    - given 3, when incremented by 2, should be 5
+    - given 3, when incremented by 1, should not mutate original
 
   describe "decrement":
-    - should decrement by default amount 1 and return a new counter
-    - should decrement by a custom amount and return a new counter
-    - should not mutate the original counter (prev unchanged, next updated)
-    - should throw TypeError if amount is not finite
+    - given 3, when decremented by 1, should be 2
+    - given 3, when decremented by 2, should be 1
+    - given 3, when decremented by 1, should not mutate original
 
   describe "reset":
-    - should reset the counter to 0 and return a new counter
-    - should not mutate the original counter (prev unchanged, next updated)
+    - given 3, when reset, should be 0
+    - given 3, when reset, should not mutate original
 
-  describe "getValue":
-    - should return the current value
+  describe "validation":
+    - given non-finite amount, when increment called, should throw TypeError
+    - given non-finite amount, when decrement called, should throw TypeError
+    - given non-finite counter value, when any op called, should throw TypeError
 
 output:
 
 - Target file: test/counter.test.js
-- Import `test` from 'node:test' and `strict as assert` from 'node:assert'
-- Import `{ createCounter, increment, decrement, reset, getValue }` from '../src/counter.js'
-- Generate ONLY flat, top-level tests named like:
-  - "createCounter: should create a counter with default value 0"
-  - "increment: should increment by default amount 1 and return a new counter"
-- In all tests:
-  - NEVER call methods on the counter (no `.increment()`, `.getValue()`, etc.)
-  - Use `const next = increment(prev, amount)` (or `decrement`, `reset`)
-  - Assert immutability by checking both `prev` and `next` with `getValue(...)`
-  - Do not leave variables unused; if unavoidable, prefix with `_`
+- Import only: { test } from 'node:test'; assert from 'node:assert/strict'
+- Import { createCounter, increment, decrement, reset, getValue } from '../src/counter.js'
+- Do not define or export any of those functions here.
+- Target file: test/counter.test.js
+- Imports: { test } from 'node:test'; assert from 'node:assert/strict'
+- Import functions from '../src/counter.js'
+- One assertion per test (split immutability into two separate tests if needed)
